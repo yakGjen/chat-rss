@@ -1,0 +1,20 @@
+.send-message {
+  height: 15vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darkgrey;
+  /*border-top: solid 1px grey;*/
+  box-sizing: border-box;
+}
+
+.send-message-field {
+  height: 100%;
+  width: 40%;
+  padding: 0;
+  margin-right: 20px;
+  border: solid 1px grey;
+  border-bottom: none;
+  box-sizing: border-box;
+}

@@ -1,0 +1,44 @@
+main {
+  /*padding: 0 30px;*/
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*box-sizing: border-box;*/
+  height: 90vh;
+  /*overflow: auto;*/
+}
+
+.main-content-messages {
+  width: 100%;
+  height: 85vh;
+  padding: 0 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.message-card {
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: solid 1px grey;
+  background: white;
+  box-shadow: 0 2px 5px 0 grey;
+}
+
+.message-card-name {
+  margin: 0;
+  text-decoration: underline;
+}
+
+.message-card-text {
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  font-style: italic;
+}

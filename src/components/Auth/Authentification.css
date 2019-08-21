@@ -1,0 +1,23 @@
+.auth-header {
+  text-align: center;
+}
+
+.auth-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+}
+
+.auth-button {
+  border: solid 1px red;
+}
