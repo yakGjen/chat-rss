@@ -11,13 +11,12 @@ import './Header.css';
 
 const Header = (props) => (
   <header className='header'>
-    <div>RSS</div>
     <Link
       to={'/'}
       exact='true'
       className='header-link'
     >
-      <h1>Chat</h1>
+      <h1>Chat-RSS</h1>
     </Link>
     <div>
       <Link

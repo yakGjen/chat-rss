@@ -35,10 +35,6 @@ class App extends Component {
     this.scrollDown = this.scrollDown.bind(this);
   }
 
-  componentWillUnmount() {
-    localStorage.setItem('true', 'yes');
-  }
-
   componentDidMount() {
     console.log('App did mounted');
     this.soket.onopen = this.handleOpenConnection;
@@ -57,6 +53,7 @@ class App extends Component {
     } else {
       console.log('localstorage is empty');
     }
+    console.log('App state:');
     console.log(this.state);
   }
 
@@ -100,7 +97,6 @@ class App extends Component {
   }
 
   logIn(loginValue, passwordValue) {
-    console.log('Log In');
     if (loginValue === '' && passwordValue === '') {
       if (this.state.loggedIn === false) {
         this.setState(Object.assign({}, this.state, {loggedIn: true, log: 'Log Out'}));
@@ -109,7 +105,6 @@ class App extends Component {
     } else {
       console.log('error');
     }
-    console.log(this.state);
   }
 
   scrollDown(elem) {

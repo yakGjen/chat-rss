@@ -9,12 +9,16 @@ import './Hello.css';
 class Hello extends React.Component {
   componentDidMount() {
     console.log('Hello mounted');
-    console.log(localStorage);
   }
 
   render() {
     return (
-      <main>Hello</main>
+      <main className='main'>
+        <h2>Welcome to RSS-Chat</h2>
+        <p>
+          You can go to registration or the login form.
+        </p>
+      </main>
     );
   }
 }

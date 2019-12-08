@@ -16,6 +16,7 @@
 
 .header h1 {
   margin: 0;
+  font-size: 120%;
 }
 
 .header-button-link:not(:first-child) {
@@ -25,7 +26,3 @@
 .header-button {
   cursor: pointer;
 }
-
-/*.header-button:not(:first-child) {
-  margin-left: 10px;
-}*/
