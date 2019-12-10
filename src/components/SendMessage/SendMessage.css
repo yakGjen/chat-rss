@@ -12,9 +12,18 @@
 .send-message-field {
   height: 100%;
   width: 40%;
-  padding: 0;
+  padding: 10px;
   margin-right: 20px;
   border: solid 1px grey;
   border-bottom: none;
   box-sizing: border-box;
+}
+
+.send-message-button {
+  padding: 5px 15px;
+  box-shadow: 0 0 5px -2px #000000;
+  background: transparent;
+  border: solid 1px #ffffff;
+  color: #ffffff;
+  cursor: pointer;
 }

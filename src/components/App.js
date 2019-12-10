@@ -24,15 +24,6 @@ class App extends Component {
       }],
       inputValue: '',
     };
-    this.logIn = this.logIn.bind(this);
-    this.handleOpenConnection = this.handleOpenConnection.bind(this);
-    this.handleCloseConnection = this.handleCloseConnection.bind(this);
-    this.closeConnection = this.closeConnection.bind(this);
-    this.handleData = this.handleData.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
-    this.handleInputValue = this.handleInputValue.bind(this);
-
-    this.scrollDown = this.scrollDown.bind(this);
   }
 
   componentDidMount() {
@@ -57,11 +48,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  handleOpenConnection() {
+  handleOpenConnection = () => {
     console.log('open');
   }
 
-  handleCloseConnection(event) {
+  handleCloseConnection = (event) => {
     console.log('close');
     //this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
     console.log('record in localStorage');
@@ -69,34 +60,38 @@ class App extends Component {
     localStorage.setItem('data', JSON.stringify(this.state));
   }
 
-  handleData(event) {
+  handleData = (event) => {
     console.log('handle data');
     this.setState(Object.assign({}, this.state, {data: [...this.state.data, ...JSON.parse(event.data)]}));
   }
 
   // save users data in localeStorage
-  closeConnection() {
+  closeConnection = () => {
     if (this.state.loggedIn === true) {
-      console.log('close button');
+      console.log('close connection');
       this.soket.close();
       this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
     }
   }
+  
+  soketError = () => {
+    console.log('error in connection');
+  }
 
-  sendMessage() {
+  sendMessage = () => {
     console.log('send');
     this.soket.send(JSON.stringify({
       from: 'Evgen',
-      message: 'Test message',
+      message: this.state.inputValue,
     }));
   }
 
-  handleInputValue(event) {
+  handleInputValue = (event) => {
     console.log('input', event.target.value);
     this.setState(Object.assign({}, this.state, {inputValue: event.target.value}))
   }
 
-  logIn(loginValue, passwordValue) {
+  logIn = (loginValue, passwordValue) => {
     if (loginValue === '' && passwordValue === '') {
       if (this.state.loggedIn === false) {
         this.setState(Object.assign({}, this.state, {loggedIn: true, log: 'Log Out'}));
@@ -107,7 +102,7 @@ class App extends Component {
     }
   }
 
-  scrollDown(elem) {
+  scrollDown = (elem) => {
     console.log('scroll');
     elem.scrollTo(0, elem.scrollHeight);
   }

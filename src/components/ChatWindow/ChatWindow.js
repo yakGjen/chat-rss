@@ -20,21 +20,23 @@ class ChatWindow extends Component {
   }
 
   render() {
-    if (this.props.loggedIn === false) {
+    const {loggedIn, data, sendMessage, handleInputValue} = this.props;
+    
+    if (loggedIn === false) {
       return <Redirect to='/auth'/>
     }
     return (
       <main>
         Chat Window
         <div className='main-content-messages' ref={(node) => this.elem = node}>
-          {this.props.data.map((item, index) => (
+          {data.map((item, index) => (
             <div className='message-card' key={index}>
               <h3 className='message-card-name'>Name: {item.from}</h3>
               <p className='message-card-text'>{item.message}</p>
             </div>
           ))}
         </div>
-        <SendMessage sendMessage={this.props.sendMessage} handleInputValue={this.props.handleInputValue}/>
+        <SendMessage sendMessage={sendMessage} handleInputValue={handleInputValue}/>
       </main>
     );
   }
