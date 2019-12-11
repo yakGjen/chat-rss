@@ -13,9 +13,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.soket = new WebSocket('ws://st-chat.shas.tel');
+    // this.soket = new WebSocket('ws://st-chat.shas.tel');
+    this.soket = null;
+    
+    // this.openConnection();
 
     this.state = {
+      user: '',
       loggedIn: false,
       log: 'Log In',
       data: [{
@@ -28,36 +32,51 @@ class App extends Component {
 
   componentDidMount() {
     console.log('App did mounted');
-    this.soket.onopen = this.handleOpenConnection;
-    this.soket.onclose = this.handleCloseConnection;
-    this.soket.onerror = this.soketError;
-
-    if (localStorage.length > 0) {
-      const storageState = JSON.parse(localStorage.getItem('data'));
-
-      if (storageState.loggedIn) {
-        console.log('localStorage run');
-        this.setState(JSON.parse(localStorage.getItem('data')));
+    
+    // this.downloadLocalStorage();
+    
+    window.addEventListener('unload', () => {
+      if (this.state.loggedIn) {
+        localStorage.setItem('activeUser', this.state.user);
+        localStorage.setItem(this.state.user, JSON.stringify(this.state));
       }
-
-      //this.setState(JSON.parse(localStorage.getItem('data')));
+    });
+  }
+  
+  downloadLocalStorage = () => {
+    const activeUser = localStorage.getItem('activeUser');
+    
+    if (activeUser) {
+      const storageState = JSON.parse(localStorage.getItem(activeUser));
+      console.log('from storage:');
+      console.log(storageState);
+      this.setState(storageState);
+    
+      console.log('localstorage runned with credentials');
     } else {
       console.log('localstorage is empty');
     }
-    console.log('App state:');
-    console.log(this.state);
+  }
+  
+  openConnection = () => {
+    this.soket = new WebSocket('ws://st-chat.shas.tel');
+  }
+  
+  setSoketHandlers = () => {
+    this.soket.onopen = this.handleOpenConnection;
+    this.soket.onclose = this.handleCloseConnection;
+    this.soket.onerror = this.soketError;
   }
 
   handleOpenConnection = () => {
-    console.log('open');
+    console.log('open connection');
   }
 
   handleCloseConnection = (event) => {
     console.log('close');
-    //this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
-    console.log('record in localStorage');
-    localStorage.clear();
-    localStorage.setItem('data', JSON.stringify(this.state));
+    
+    localStorage.setItem(this.state.user, JSON.stringify(this.state));
+    this.setState( Object.assign({}, this.state, {data: []}) );
   }
 
   handleData = (event) => {
@@ -69,8 +88,8 @@ class App extends Component {
   closeConnection = () => {
     if (this.state.loggedIn === true) {
       console.log('close connection');
-      this.soket.close();
       this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
+      this.soket.close();
     }
   }
   
@@ -88,14 +107,24 @@ class App extends Component {
 
   handleInputValue = (event) => {
     console.log('input', event.target.value);
-    this.setState(Object.assign({}, this.state, {inputValue: event.target.value}))
+    this.setState(Object.assign({}, this.state, {inputValue: event.target.value}));
   }
 
   logIn = (loginValue, passwordValue) => {
     if (loginValue === '' && passwordValue === '') {
+      // this.setState({user: 'Evgen'});
+      this.openConnection();
+      this.setSoketHandlers();
+      
+      setTimeout(() => {
+        this.setState(Object.assign({}, this.state, {user: 'Evgen'}));
+      }, 0);
+      
+      
       if (this.state.loggedIn === false) {
         this.setState(Object.assign({}, this.state, {loggedIn: true, log: 'Log Out'}));
       }
+      
       this.soket.onmessage = this.handleData;
     } else {
       console.log('error');
