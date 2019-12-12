@@ -22,10 +22,10 @@ class App extends Component {
       user: '',
       loggedIn: false,
       log: 'Log In',
-      data: [{
+      data: [/*{
         from: 'me',
         message: 'bla',
-      }],
+      }*/],
       inputValue: '',
     };
   }
@@ -33,7 +33,7 @@ class App extends Component {
   componentDidMount() {
     console.log('App did mounted');
     
-    // this.downloadLocalStorage();
+    this.downloadLocalStorage();
     
     window.addEventListener('unload', () => {
       if (this.state.loggedIn) {
@@ -41,22 +41,39 @@ class App extends Component {
         localStorage.setItem(this.state.user, JSON.stringify(this.state));
       }
     });
+    
+    if (this.state.loggedIn) {
+      this.props.history.push('/chat-window');
+    }
   }
+  
+  /*
+  sort in stage of download data
+   */
   
   downloadLocalStorage = () => {
     const activeUser = localStorage.getItem('activeUser');
     
     if (activeUser) {
       const storageState = JSON.parse(localStorage.getItem(activeUser));
-      console.log('from storage:');
-      console.log(storageState);
+      
       this.setState(storageState);
+      
+      // this.handleDataInBackground();
+      this.openConnection();
     
       console.log('localstorage runned with credentials');
     } else {
       console.log('localstorage is empty');
     }
   }
+  
+  /*
+  if user has reloaded page without log out
+   */
+  /*handleDataInBackground = () => {
+    this.logIn('', '');
+  }*/
   
   openConnection = () => {
     this.soket = new WebSocket('ws://st-chat.shas.tel');
@@ -65,6 +82,7 @@ class App extends Component {
   setSoketHandlers = () => {
     this.soket.onopen = this.handleOpenConnection;
     this.soket.onclose = this.handleCloseConnection;
+    this.soket.onmessage = this.handleData;
     this.soket.onerror = this.soketError;
   }
 
@@ -75,13 +93,8 @@ class App extends Component {
   handleCloseConnection = (event) => {
     console.log('close');
     
-    localStorage.setItem(this.state.user, JSON.stringify(this.state));
+    // localStorage.setItem(this.state.user, JSON.stringify(this.state));
     this.setState( Object.assign({}, this.state, {data: []}) );
-  }
-
-  handleData = (event) => {
-    console.log('handle data');
-    this.setState(Object.assign({}, this.state, {data: [...this.state.data, ...JSON.parse(event.data)]}));
   }
 
   // save users data in localeStorage
@@ -90,6 +103,36 @@ class App extends Component {
       console.log('close connection');
       this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
       this.soket.close();
+      localStorage.clear();
+    }
+  }
+  
+  handleData = (event) => {
+    console.log('handle data');
+    const inputData = JSON.parse(event.data);
+    
+    if (inputData.length > 1) {
+      const sortedData = this.sortInputData(inputData);
+      this.setState(Object.assign({}, this.state, {data: [...this.state.data, ...sortedData]}));
+    } else {
+      this.setState(Object.assign({}, this.state, {data: [...this.state.data, ...JSON.parse(event.data)]}));
+    }
+  }
+  
+  sortInputData = (data) => {
+    const sortedData = data.filter((item) => {
+      if (!this.state.data.length) {
+        return false;
+      }
+      if (item.time > this.state.data[this.state.data.length - 1].time) {
+        return true;
+      }
+    });
+    
+    if (sortedData.length) {
+      return sortedData.sort((a, b) => a.time - b.time);
+    } else {
+      return data.sort((a, b) => a.time - b.time);
     }
   }
   
@@ -125,7 +168,6 @@ class App extends Component {
         this.setState(Object.assign({}, this.state, {loggedIn: true, log: 'Log Out'}));
       }
       
-      this.soket.onmessage = this.handleData;
     } else {
       console.log('error');
     }
