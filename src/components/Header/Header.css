@@ -17,6 +17,7 @@
 .header h1 {
   margin: 0;
   font-size: 120%;
+  color: #ffffff;
 }
 
 .header-button-link:not(:first-child) {
@@ -24,5 +25,10 @@
 }
 
 .header-button {
+  padding: 3px 15px;
+  border: solid 1px #ffffff;
+  color: #ffffff;
+  background: none;
   cursor: pointer;
+  box-shadow: 0 0 5px -2px #000000;
 }

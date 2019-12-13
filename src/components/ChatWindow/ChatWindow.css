@@ -42,3 +42,13 @@ main {
   text-align: center;
   font-style: italic;
 }
+
+.message-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-date > p {
+  margin: 0;
+  font-size: 70%;
+}

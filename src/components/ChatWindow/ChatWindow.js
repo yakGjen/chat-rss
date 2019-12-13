@@ -23,8 +23,9 @@ class ChatWindow extends Component {
     const {loggedIn, data, sendMessage, handleInputValue} = this.props;
     
     if (loggedIn === false) {
-      return <Redirect to='/auth'/>
+      return <Redirect to='/auth'/>;
     }
+    
     return (
       <main>
         Chat Window
@@ -33,8 +34,10 @@ class ChatWindow extends Component {
             <div className='message-card' key={index}>
               <h3 className='message-card-name'>Name: {item.from}</h3>
               <p className='message-card-text'>{item.message}</p>
-              <p>{`Time: ${new Date(item.time).getHours()}:${new Date(item.time).getMinutes()}`}</p>
-              <p>{`Date: ${new Date(item.time).getDate()}.${new Date(item.time).getMonth() + 1}.${new Date(item.time).getFullYear()}`}</p>
+              <div className='message-date'>
+                <p>{`Time: ${new Date(item.time).getHours()}:${new Date(item.time).getMinutes()}:${new Date(item.time).getSeconds()}`}</p>
+                <p>{`Date: ${new Date(item.time).getDate()}.${new Date(item.time).getMonth() + 1}.${new Date(item.time).getFullYear()}`}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import './Authentification.css';
 
@@ -27,7 +27,11 @@ class Authentification extends Component {
   }
 
   render() {
-    const {logIn} = this.props;
+    const {logIn, loggedIn} = this.props;
+    
+    if (loggedIn) {
+      return <Redirect to='/chat-window'/>;
+    }
     
     return (
       <main>
@@ -43,7 +47,7 @@ class Authentification extends Component {
             <input id='password' type="password" className='input-field' value={this.state.loginPassword} onChange={this.handleUpdatePassword}/>
           </label>
           <Link to='/chat-window' exact='false' className='auth-button'>
-            <button onClick={() => logIn(this.state.loginValue, this.state.passwordValue)}>Войти</button>
+            <button className='auth-btn' onClick={() => logIn(this.state.loginValue, this.state.passwordValue)}>Войти</button>
           </Link>
         </form>
       </main>

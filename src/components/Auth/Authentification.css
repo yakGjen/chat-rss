@@ -19,5 +19,13 @@
 }
 
 .auth-button {
-  border: solid 1px red;
+  text-align: center;
+}
+
+.auth-btn {
+  padding: 6px 30px;
+  border: solid 1px #ffffff;
+  background: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px -2px #000000;
 }

@@ -183,10 +183,10 @@ class App extends Component {
       <div className="app">
         <Layout log={this.state.log} closeConnection={this.closeConnection}>
           <Switch>
-            <Route path='/auth' render={() => <Auth logIn={this.logIn}/>} />
+            <Route path='/auth' render={() => <Auth loggedIn={this.state.loggedIn} logIn={this.logIn}/>} />
             <Route path='/registration' component={Registration} />
             <Route path='/chat-window' render={() => <ChatWindow scrollDown={this.scrollDown} data={this.state.data} sendMessage={this.sendMessage} loggedIn={this.state.loggedIn} handleInputValue={this.handleInputValue}/>} />
-            <Route path='/' component={Hello} />
+            <Route path='/' component={() => <Hello loggedIn={this.state.loggedIn}/>} />
           </Switch>
         </Layout>
       </div>
