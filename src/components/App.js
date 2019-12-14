@@ -42,9 +42,9 @@ class App extends Component {
       }
     });
     
-    if (this.state.loggedIn) {
+    /*if (this.state.loggedIn) {
       this.props.history.push('/chat-window');
-    }
+    }*/
   }
   
   /*
@@ -61,6 +61,7 @@ class App extends Component {
       
       // this.handleDataInBackground();
       this.openConnection();
+      this.setSoketHandlers();
     
       console.log('localstorage runned with credentials');
     } else {

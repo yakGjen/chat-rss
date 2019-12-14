@@ -11,11 +11,14 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
-    console.log('chat mounted');
-    console.log(this.props.data);
+    console.log('chat-window mounted');
+    // define this.elem
+    console.log(this.elem);
+    this.props.scrollDown(this.elem);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('chat-window was updated');
     this.props.scrollDown(this.elem);
   }
 
