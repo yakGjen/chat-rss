@@ -8,6 +8,8 @@ import SendMessage from "../SendMessage/SendMessage";
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
+    
+    this.elem = null;
   }
 
   componentDidMount() {

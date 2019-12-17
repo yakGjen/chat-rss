@@ -34,7 +34,7 @@ class Authentification extends Component {
     }
     
     return (
-      <main>
+      <main className='main'>
         <h2 className='auth-header'>Authentification</h2>
         <p>This is test authentification page! You don't need to enter login and password.</p>
         <form className='auth-form' onSubmit={this.ctrlForm}>

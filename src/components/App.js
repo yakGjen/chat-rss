@@ -175,6 +175,7 @@ class App extends Component {
   }
 
   scrollDown = (elem) => {
+    if (!elem) return;
     console.log('scroll');
     elem.scrollTo(0, elem.scrollHeight);
   }
