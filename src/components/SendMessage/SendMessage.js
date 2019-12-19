@@ -14,8 +14,14 @@ class SendMessage extends Component {
     super(props);
   }
   
-  sendValue = () => {
+  sendValue = (event) => {
+    event.target.blur();
     const {sendMessage} = this.props;
+
+    if (!this.textArea.value.trim()) {
+      this.textArea.value = '';
+      return;
+    }
     
     sendMessage();
     this.textArea.value = '';

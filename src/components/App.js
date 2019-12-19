@@ -69,13 +69,6 @@ class App extends Component {
     }
   }
   
-  /*
-  if user has reloaded page without log out
-   */
-  /*handleDataInBackground = () => {
-    this.logIn('', '');
-  }*/
-  
   openConnection = () => {
     this.soket = new WebSocket('ws://st-chat.shas.tel');
   }
@@ -99,7 +92,8 @@ class App extends Component {
   }
 
   // save users data in localeStorage
-  closeConnection = () => {
+  closeConnection = (event) => {
+    event.target.blur();
     if (this.state.loggedIn === true) {
       console.log('close connection');
       this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
