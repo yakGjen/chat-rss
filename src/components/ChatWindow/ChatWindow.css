@@ -17,8 +17,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*overflow: auto;*/
-  overflow: scroll;
+  overflow: auto;
 }
 
 .message-card {
