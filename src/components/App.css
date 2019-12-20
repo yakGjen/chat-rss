@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Gelasio&display=swap");
 
 .app {
-  min-height: 100vh;
+  max-width: 2000px;
+  margin: 0 auto;
+  /*min-height: 100vh;
+  max-height: 100vh;*/
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

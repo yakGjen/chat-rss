@@ -1,4 +1,6 @@
 .main {
+  padding: 0 40px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,6 +8,10 @@
 }
 
 .auth-header {
+  text-align: center;
+}
+
+.auth-text {
   text-align: center;
 }
 
@@ -35,4 +41,10 @@
   background: none;
   cursor: pointer;
   box-shadow: 0 0 5px -2px #000000;
+}
+
+@media (max-width: 450px) {
+  .auth-form {
+    width: 90%;
+  }
 }

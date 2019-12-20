@@ -31,8 +31,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('App did mounted');
-    
     this.downloadLocalStorage();
     
     window.addEventListener('unload', () => {
@@ -41,10 +39,6 @@ class App extends Component {
         localStorage.setItem(this.state.user, JSON.stringify(this.state));
       }
     });
-    
-    /*if (this.state.loggedIn) {
-      this.props.history.push('/chat-window');
-    }*/
   }
   
   /*
@@ -59,11 +53,9 @@ class App extends Component {
       
       this.setState(storageState);
       
-      // this.handleDataInBackground();
       this.openConnection();
       this.setSoketHandlers();
-    
-      console.log('localstorage runned with credentials');
+      
     } else {
       console.log('localstorage is empty');
     }
@@ -85,9 +77,6 @@ class App extends Component {
   }
 
   handleCloseConnection = (event) => {
-    console.log('close');
-    
-    // localStorage.setItem(this.state.user, JSON.stringify(this.state));
     this.setState( Object.assign({}, this.state, {data: []}) );
   }
 
@@ -95,7 +84,6 @@ class App extends Component {
   closeConnection = (event) => {
     event.target.blur();
     if (this.state.loggedIn === true) {
-      console.log('close connection');
       this.setState(Object.assign({}, this.state, {loggedIn: false, log: 'Log In'}));
       this.soket.close();
       localStorage.clear();
@@ -103,7 +91,6 @@ class App extends Component {
   }
   
   handleData = (event) => {
-    console.log('handle data');
     const inputData = JSON.parse(event.data);
     
     if (inputData.length > 1) {
@@ -136,21 +123,18 @@ class App extends Component {
   }
 
   sendMessage = () => {
-    console.log('send');
     this.soket.send(JSON.stringify({
-      from: 'Evgen',
+      from: 'Test-User',
       message: this.state.inputValue,
     }));
   }
 
   handleInputValue = (event) => {
-    console.log('input', event.target.value);
     this.setState(Object.assign({}, this.state, {inputValue: event.target.value}));
   }
 
   logIn = (loginValue, passwordValue) => {
     if (loginValue === '' && passwordValue === '') {
-      // this.setState({user: 'Evgen'});
       this.openConnection();
       this.setSoketHandlers();
       
@@ -170,7 +154,6 @@ class App extends Component {
 
   scrollDown = (elem) => {
     if (!elem) return;
-    console.log('scroll');
     elem.scrollTo(0, elem.scrollHeight);
   }
 

@@ -17,7 +17,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+  /*overflow: auto;*/
+  overflow: scroll;
 }
 
 .message-card {
@@ -51,4 +52,32 @@ main {
 .message-date > p {
   margin: 0;
   font-size: 70%;
+}
+
+
+@media (max-width: 850px) {
+  .message-card {
+    width: 60%;
+  }
+}
+
+@media (max-width: 700px) {
+  .message-card {
+    width: 70%;
+  }
+}
+
+@media (max-width: 400px) {
+  .message-card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 350px) {
+  main {
+    height: 81vh;
+  }
+  .message-card {
+    width: 90%;
+  }
 }

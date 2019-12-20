@@ -31,7 +31,7 @@ const Header = (props) => (
         exact='false'
         className='header-button-link'
       >
-        <button className='header-button'>Registration</button>
+        <button onClick={(event) => event.target.blur()} className='header-button'>Registration</button>
       </Link>
     </div>
   </header>

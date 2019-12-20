@@ -36,7 +36,7 @@ class Authentification extends Component {
     return (
       <main className='main'>
         <h2 className='auth-header'>Authentification</h2>
-        <p>This is test authentification page! You don't need to enter login and password.</p>
+        <p className='auth-text'>This is test authentification page! You don't need to enter login and password.</p>
         <form className='auth-form' onSubmit={this.ctrlForm}>
           <label className='input' htmlFor="login">
             Login:
@@ -47,7 +47,7 @@ class Authentification extends Component {
             <input id='password' type="password" className='input-field' value={this.state.loginPassword} onChange={this.handleUpdatePassword}/>
           </label>
           <Link to='/chat-window' exact='false' className='auth-button'>
-            <button className='auth-btn' onClick={() => logIn(this.state.loginValue, this.state.passwordValue)}>Войти</button>
+            <button className='auth-btn' onClick={() => logIn(this.state.loginValue, this.state.passwordValue)}>Entry</button>
           </Link>
         </form>
       </main>

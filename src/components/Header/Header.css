@@ -32,3 +32,16 @@
   cursor: pointer;
   box-shadow: 0 0 5px -2px #000000;
 }
+
+@media (max-width: 350px) {
+  .header {
+    height: 15vh;
+    padding: 10px 0;
+    box-sizing: border-box;
+    flex-direction: column;
+  }
+
+  .header h1 {
+    margin-bottom: 5px;
+  }
+}
