@@ -10,6 +10,7 @@ main {
 }
 
 .main-content-messages {
+  position: relative;
   width: 100%;
   height: 85vh;
   padding: 0 30px;

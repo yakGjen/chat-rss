@@ -1,0 +1,27 @@
+.button-down {
+  position: fixed;
+  right: 70px;
+  top: 70px;
+  
+  width: 50px;
+  height: 50px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 50%;
+  box-shadow: 0 0 10px -5px #000000;
+  border: solid 1px darkgrey;
+  color: white;
+  cursor: pointer;
+  
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s 0s linear;
+}
+
+.button-down-show {
+  opacity: 1;
+  z-index: 1;
+}

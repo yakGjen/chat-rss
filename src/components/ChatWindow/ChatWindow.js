@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import './ChatWindow.css';
 import SendMessage from "../SendMessage/SendMessage";
 
+import DownButton from "../DownButton/DownButton";
+
 
 class ChatWindow extends Component {
   constructor(props) {
@@ -41,6 +43,7 @@ class ChatWindow extends Component {
               </div>
             </div>
           ))}
+          <DownButton messagesWindow={this.elem}/>
         </div>
         <SendMessage sendMessage={sendMessage} handleInputValue={handleInputValue}/>
       </main>
