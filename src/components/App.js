@@ -62,7 +62,12 @@ class App extends Component {
   }
   
   openConnection = () => {
-    this.soket = new WebSocket('ws://st-chat.shas.tel');
+    try {
+      this.soket = new WebSocket('ws://st-chat.shas.tel');
+    } catch (e) {
+      alert('chat uses the websocket connection that is not used this hosting');
+      console.log('Error', e);
+    }
   }
   
   setSoketHandlers = () => {
